@@ -1,0 +1,35 @@
+{
+  "exclude": [
+    "node_modules",
+    "data",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
+  "entry": "./server/server.ts",
+  "output": {
+    "filename": "server.js"
+  },
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "target": "es6",
+    "outDir": "build",
+    "rootDir": "./",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "removeComments": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./node_modules/@types/*",
+        "./server/types/*"
+      ]
+    }
+  }
+}
