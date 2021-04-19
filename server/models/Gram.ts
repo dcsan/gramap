@@ -66,7 +66,6 @@ function getRelated(item: any): string[] {
 }
 
 GramSchema.statics.toMarkdown = async function () {
-  console.log('toMarkdown')
   logger.log('toMarkdown')
 
   // const all = await Gram.find({})
@@ -92,9 +91,12 @@ GramSchema.statics.toMarkdown = async function () {
     // })
 
     logger.info('title', title, item.zh)
-    logger.info('keys', Object.keys(item))
+    // logger.info('keys', Object.keys(item))
+
+    // everything has to be double spaced cos of githubs lame editor
     const md = `---
 cname: ${item.cname}
+
 type: gram
 
 tags:
@@ -106,15 +108,21 @@ related:
 - ${item.related?.join('\n- ')}
 
 lang: ${item.lang}
+
 level: ${item.level}
+
 regex: ${item.rex}
+
 group: ${item.concept}
 
 ja: ${item.ja}
+
 hg: ${item.hg}
+
 rm: ${item.rm}
 
 zh: ${item.zh}
+
 pn: ${item.pn}
 
 en: ${item.en}
@@ -142,7 +150,7 @@ ${listOf(related, 'related')}
 
 `
 
-    logger.info(md)
+    // logger.info(md)
     const fp = path.join(__dirname, `../../data/gramap.wiki/${item.cname}.md`)
     fs.writeFileSync(fp, md)
   }
